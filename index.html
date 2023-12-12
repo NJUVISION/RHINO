@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="NeuralCMF leverages the implicit neural representation (INR) to model the 3D structure and the comprehensive 6D forward/backward motion of the heart.">
+  <meta name="keywords" content="Myocardial motion tracking, Echocardiogram videos, Implicit neural representation, Cardiac imaging">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RHINO: Regularizing the Hash-based Implicit Neural Representation</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">RHINO: Regularizing the Hash-based Implicit Neural Representation</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://pakfa.github.io/zhuhao_photo.github.io/">Hao Zhu</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://vision.nju.edu.cn/ee/61/c29471a585313/page.htm">Fengyi Liu</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://qzhang-cv.github.io/">Qi Zhang</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://cite.nju.edu.cn/People/Faculty/20190621/i5054.html">Xun Cao</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://vision.nju.edu.cn/fc/d3/c29470a457939/page.htm">Zhan Ma</a><sup>1</sup>,</span>
+
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Nanjing University,</span>
+            <span class="author-block"><sup>2</sup>Tencent AI Lab,</span>
+
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2309.12642"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/MELANCHOLY828/RHINO"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/res_img_first.png" alt="Description of the image">
+      <p class="image-caption" >
+        <br>
+        Traditional functionexpansion-based INRs (SIREN and PE+MLP) suffer from spectral bias, thus over-smooth textures are produced. Hash-based
+        INRs (DINER and Instant NGP) improve the expressive power, however noisy artifacts appear in the interpolations. RHINO
+        improves both the expressive power and the regularization of hash-based INRs.
+      </p>
+                <figcaption style="text-align: justify;"></figcaption>
+      <!-- <h2 class="subtitle has-text-centered"> -->
+      <!-- </h2> -->
+    </div>
+  </div>
+</section>
+  
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            The use of Implicit Neural Representation (INR) through a hash-table has demonstrated impressive effectiveness and efficiency in
+            characterizing intricate signals.However, current state-of-the-art methods exhibit insufficient regularization, often yielding 
+            unreliable and noisy results during interpolations. We find that this issue stems from broken gradient flow between input coordinates 
+            and indexed hash-keys, where the chain rule attempts to model discrete hash-keys, rather than the continuous coordinates. To tackle this 
+            concern, we introduce RHINO, in which a continuous analytical function is incorporated to facilitate regularization by connecting the 
+            input coordinate and the network additionally without modifying the architecture of current hash-based INRs. This connection ensures a 
+            seamless backpropagation of gradients from the network's output back to the input coordinates, thereby enhancing regularization. Our 
+            experimental results not only showcase the broadened regularization capability across different hash-based INRs like DINER and Instant NGP, 
+            but also across a variety of tasks such as image fitting, representation of signed distance functions, and optimization of 5D 
+            static / 6D dynamic neural radiance 吧  fields. Notably, RHINO outperforms current state-of-the-art techniques in both quality and speed, affirming its superiority.
+
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">RHINO</h2>
+        <img src="./static/images/network_architecture.png" alt="Description of the image">
+        <figcaption style="text-align: justify;">The figure illustrates the workflow of our method. Coordinates are processed through Hash-table encoding to obtain hash code values, 
+          and simultaneously fed into our proposed analysis functions—either MLP or PE+MLP. The results from both approaches are concatenated and input into subsequent MLP layers.</figcaption>
+        
+        <br><br>
+
+        <img src="./static/images/reg_dim1_cmp.png" alt="Description of the image">
+        <figcaption style="text-align: justify;">Illustrate the effectiveness of our method through the following visualization. 
+          Input a one-dimensional signal, output a three-dimensional result.
+          Hash-based INRs (DINER  and Instant NGP) provide high accuracy for representing the coordinates appeared in the training set ((c) and (d)). However, both of them produce unreliable results for interpolated coordinates (i.e., the black points in (a)). (g) visualizes the learned function 𝑓𝜃 (H𝑖) of the neural network in DINER.
+
+          It is noticed that the neighboring pixels (e.g., 𝑥1 and 𝑥2, or 𝑥3 and 𝑥4) become far from each other, and the line between them will pass through several color bands, thus unreliable interpolations ((c) and (d)) are produced.</figcaption>
+
+        </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+
+
+
+
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Animation. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Results</h2>
+
+        <!-- Re-rendering. -->
+        <h3 class="title is-4">Image representation</h3>
+        <div class="content has-text-justified">
+        </div>
+        <div class="content has-text-centered">
+          <img src="./static/images/res_img_interp.png" alt="Description of the image" width="100%">
+          <figcaption style="text-align: justify;">RHINO rebuilds the analytical connection
+            between the input coordinate and the output attribute, as a
+            result, the noisy artifacts could be significantly alleviated
+            when the RHINO is applied to these hash-based INRs.</figcaption>
+          <br>       
+        
+          </div>
+          <h3 class="title is-4">3D shape representation</h3>
+          <div class="content has-text-justified">
+          </div>
+          <div class="content has-text-centered">
+            <img src="./static/images/res_SDF.png" alt="Description of the image" width="100%">
+            <figcaption style="text-align: justify;">The results indicate that our approach outperforms other methods in representing 3D shapes by
+effectively capturing smoothness, while other methods exhibit noise artifacts.</figcaption>
+            <br>
+
+          
+          
+            </div>
+            <h3 class="title is-4">Neural Radiance Fields</h3>
+            <div class="content has-text-justified">
+            </div>
+            <div class="content has-text-centered">
+              <img src="./static/images/res_static_nerf.png" alt="Description of the image" width="100%">
+              <figcaption style="text-align: justify;"> In 'Drums', RHINO
+                interpolate more reasonable textures while other methods yield smoother reconstructions. In 'Ship', RHINO suppresses the
+                artifacts appeared in the DVGO and the Instant NGP, producing more smooth results in the red box.</figcaption>
+              <br>
+      
+            
+              </div>
+              <h3 class="title is-4">Dynamic Novel View Synthesis</h3>
+              <div class="content has-text-justified">
+              </div>
+              <div class="content has-text-centered">
+                <img src="./static/images/res_dyn_nerf.png" alt="Description of the image" width="100%">
+                <figcaption style="text-align: justify;">In DINER, artifacts become apparent due to the broken gradient flow. For instance, observe the bent or missing handle of the spatula, particularly in the zoomed-in
+                  yellow boxes found in both the top and bottom subfigures.
+                  RHINO effectively rebuilds the gradient flow, resulting in
+                  more coherent reconstructions in these problematic regions.</figcaption>
+              
+                </div>
+
+
+      
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{zhu2023rhino,
+      title={RHINO: Regularizing the Hash-based Implicit Neural Representation},
+      author={Zhu, Hao and Liu, Fengyi and Zhang, Qi and Cao, Xun and Ma, Zhan},
+      journal={arXiv preprint arXiv:2309.12642},
+      year={2023}
+    }
+    
+</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <!-- <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div> -->
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
